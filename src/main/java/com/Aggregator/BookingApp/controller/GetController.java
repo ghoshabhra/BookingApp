@@ -24,7 +24,7 @@ public class GetController {
 //iVpdTwuhYEgJZXnk48Z12yjVYGT80TD1
 
 
-    @GetMapping("hello")
+    @GetMapping("/hello")
     public String hello(){
         return "hello world";
     }
