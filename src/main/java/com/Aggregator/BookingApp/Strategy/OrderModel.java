@@ -1,7 +1,4 @@
-package com.Aggregator.BookingApp.Model;
-
-import com.zerodhatech.kiteconnect.utils.Constants;
-import com.zerodhatech.models.OrderParams;
+package com.Aggregator.BookingApp.Strategy;
 
 public class OrderModel {
     String tradingsymbol;

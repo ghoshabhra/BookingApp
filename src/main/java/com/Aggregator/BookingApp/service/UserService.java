@@ -3,7 +3,6 @@ package com.Aggregator.BookingApp.service;
 import com.Aggregator.BookingApp.Model.User;
 import org.springframework.stereotype.Service;
 
-@Service
 public interface UserService {
     public User createUser(User usr);
     public User updateUser(User usr);

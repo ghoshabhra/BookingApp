@@ -1,7 +1,9 @@
 package com.Aggregator.BookingApp.service;
 
 import com.Aggregator.BookingApp.Model.User;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserServiceImpl implements UserService{
     @Override
     public User createUser(User usr) {

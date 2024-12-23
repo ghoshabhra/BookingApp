@@ -23,6 +23,6 @@ public class OfferingsController {
 
     @DeleteMapping
     public void deleteOffering(String id){
-        
+
     }
 }
