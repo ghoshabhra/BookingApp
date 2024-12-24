@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController("/Booking")
+@RestController
+@RequestMapping("/booking")
 public class BookingController {
 
     @Autowired
     public BookingService bookingService;
 
-    @GetMapping("/user/{id")
+    @GetMapping("/user/{id}")
     public List<Booking> getBookingsById(@PathVariable("id") String id){
         return bookingService.getAllBookingsByUserID(id);
     }
