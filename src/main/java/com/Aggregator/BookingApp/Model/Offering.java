@@ -3,14 +3,14 @@ package com.Aggregator.BookingApp.Model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collation = "offerings")
+@Document(collection = "offering")
 public class Offering {
     @Id
     private String id;
     private String name;
     private String type;
-    private String cost;
-    private String image;
+    private Float cost;
+    private String imageUrl;
 
     public String getId() {
         return id;
@@ -36,19 +36,19 @@ public class Offering {
         this.type = type;
     }
 
-    public String getCost() {
+    public Float getCost() {
         return cost;
     }
 
-    public void setCost(String cost) {
+    public void setCost(Float cost) {
         this.cost = cost;
     }
 
-    public String getImage() {
-        return image;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
