@@ -12,11 +12,21 @@ struct AirbnbListingsView: View {
     
     var body: some View {
         NavigationView {
-            List(viewModel.listings){ listing in
-                Text(listing.name)
-                
+            VStack{
+                if viewModel.listings.isEmpty{
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                }   else{
+                        List(viewModel.listings){ listing in
+                            NavigationLink(destination: AirbnbDetailView(model: listing), label: {
+                                AirbnbListingCardView(model: listing)
+                            })
+                            
+                        }
+                    
+                }
             }
-        
+            .navigationTitle("Our Services")
         }
         .onAppear{
             viewModel.fetchListings()
