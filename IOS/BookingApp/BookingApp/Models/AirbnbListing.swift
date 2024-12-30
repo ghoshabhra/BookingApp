@@ -11,6 +11,6 @@ struct AirbnbListing: Codable, Hashable, Identifiable {
     let id: String
     let name: String
     let type: String
-    let cost: Float
+    let cost: Double
     let imageUrl: String
 }
