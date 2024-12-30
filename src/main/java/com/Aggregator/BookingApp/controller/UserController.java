@@ -19,7 +19,6 @@ public class UserController {
 
     @PostMapping
     public User addUser(@RequestBody User usr){
-
         return userService.createUser(usr);
     }
 

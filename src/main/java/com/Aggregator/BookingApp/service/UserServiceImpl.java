@@ -4,6 +4,7 @@ import com.Aggregator.BookingApp.Model.User;
 import com.Aggregator.BookingApp.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +17,9 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User createUser(User user) {
+        if(StringUtils.isEmpty(user.getRole())){
+            user.setRole("USER");
+        }
         return userRepository.save(user);
     }
 

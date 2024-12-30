@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 @Document(collection = "offering")
 public class Offering {
@@ -17,8 +18,10 @@ public class Offering {
     private Float cost;
     private String imageUrl;
     private Boolean slotBookingAllowed;
-    private Time serviceStart;
+    private Time serviceStart; // these 2 fields are for grooming, walking pet taxi etc which are not available for 24*7
     private Time serviceEnd;
+    private List<String> features;
+
 
     public String getId() {
         return id;
@@ -90,5 +93,13 @@ public class Offering {
 
     public void setServiceEnd(Time serviceEnd) {
         this.serviceEnd = serviceEnd;
+    }
+
+    public List<String> getFeatures() {
+        return features;
+    }
+
+    public void setFeatures(List<String> features) {
+        this.features = features;
     }
 }

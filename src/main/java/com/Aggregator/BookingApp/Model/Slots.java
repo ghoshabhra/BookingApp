@@ -11,16 +11,15 @@ public class Slots {
     private String offeringId; // hotel_id in JSON
     private String type; // room_type in JSON
     private boolean hourlyBookingAllowed;
-    private List<String> features;
-    private List<Availability> availability;
+    private String uniqueId;
+    private Availability availability;
 
     // Constructor
-    public Slots(String id, String offeringId, String type, boolean hourlyBookingAllowed, List<String> features, List<Availability> availability) {
+    public Slots(String id, String offeringId, String type, boolean hourlyBookingAllowed, Availability availability) {
         this.id = id;
         this.offeringId = offeringId;
         this.type = type;
         this.hourlyBookingAllowed = hourlyBookingAllowed;
-        this.features = features;
         this.availability = availability;
     }
 
@@ -60,19 +59,11 @@ public class Slots {
         this.hourlyBookingAllowed = hourlyBookingAllowed;
     }
 
-    public List<String> getFeatures() {
-        return features;
-    }
-
-    public void setFeatures(List<String> features) {
-        this.features = features;
-    }
-
-    public List<Availability> getAvailability() {
+    public Availability getAvailability() {
         return availability;
     }
 
-    public void setAvailability(List<Availability> availability) {
+    public void setAvailability(Availability availability) {
         this.availability = availability;
     }
 
@@ -84,7 +75,6 @@ public class Slots {
                 ", hotelId='" + offeringId + '\'' +
                 ", roomType='" + type + '\'' +
                 ", hourlyBookingAllowed=" + hourlyBookingAllowed +
-                ", features=" + features +
                 ", availability=" + availability +
                 '}';
     }

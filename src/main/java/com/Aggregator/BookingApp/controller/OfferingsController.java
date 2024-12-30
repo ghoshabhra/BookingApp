@@ -51,6 +51,6 @@ public class OfferingsController {
     public void deleteSlots(@RequestParam String id){
         slotService.deleteSlots(id);
     }
-    
+
 
 }
