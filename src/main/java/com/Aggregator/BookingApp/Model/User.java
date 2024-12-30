@@ -3,6 +3,8 @@ package com.Aggregator.BookingApp.Model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Document(collection = "user")
 public class User {
     @Id
@@ -11,6 +13,24 @@ public class User {
     private String lastName;
     private String email;
     private String phoneNumber;
+    private List<Address> listOfAddresses;
+    private String role;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public List<Address> getListOfAddresses() {
+        return listOfAddresses;
+    }
+
+    public void setListOfAddresses(List<Address> listOfAddresses) {
+        this.listOfAddresses = listOfAddresses;
+    }
 
     public String getId() {
         return id;

@@ -3,14 +3,22 @@ package com.Aggregator.BookingApp.Model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.util.Date;
+
 @Document(collection = "offering")
 public class Offering {
     @Id
     private String id;
     private String name;
     private String type;
+    private String description;
     private Float cost;
     private String imageUrl;
+    private Boolean slotBookingAllowed;
+    private Time serviceStart;
+    private Time serviceEnd;
 
     public String getId() {
         return id;
@@ -18,6 +26,14 @@ public class Offering {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getName() {
@@ -50,5 +66,29 @@ public class Offering {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public Boolean getSlotBookingAllowed() {
+        return slotBookingAllowed;
+    }
+
+    public void setSlotBookingAllowed(Boolean slotBookingAllowed) {
+        this.slotBookingAllowed = slotBookingAllowed;
+    }
+
+    public Time getServiceStart() {
+        return serviceStart;
+    }
+
+    public void setServiceStart(Time serviceStart) {
+        this.serviceStart = serviceStart;
+    }
+
+    public Time getServiceEnd() {
+        return serviceEnd;
+    }
+
+    public void setServiceEnd(Time serviceEnd) {
+        this.serviceEnd = serviceEnd;
     }
 }
