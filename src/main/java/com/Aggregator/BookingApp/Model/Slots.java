@@ -1,5 +1,6 @@
 package com.Aggregator.BookingApp.Model;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -10,6 +11,7 @@ public class Slots {
     private String id; // _id in JSON
     private String offeringId; // hotel_id in JSON
     private String type; // room_type in JSON
+    @Value("${Slots.hourlyBookingAllowed:false}")
     private boolean hourlyBookingAllowed;
     private String uniqueId;
     private Availability availability;
@@ -65,6 +67,14 @@ public class Slots {
 
     public void setAvailability(Availability availability) {
         this.availability = availability;
+    }
+
+    public String getUniqueId() {
+        return uniqueId;
+    }
+
+    public void setUniqueId(String uniqueId) {
+        this.uniqueId = uniqueId;
     }
 
     // toString method
