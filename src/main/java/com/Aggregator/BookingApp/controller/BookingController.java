@@ -3,6 +3,7 @@ package com.Aggregator.BookingApp.controller;
 import com.Aggregator.BookingApp.DTO.BookingDTO;
 import com.Aggregator.BookingApp.Model.Booking;
 import com.Aggregator.BookingApp.service.BookingService;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/booking")
+@RequestMapping("/api/booking")
 public class BookingController {
 
     @Autowired
@@ -27,7 +28,7 @@ public class BookingController {
     }
 
     @PutMapping
-    public Booking updateBooking(@RequestBody Booking booking){
+    public Booking updateBooking(@RequestBody Booking booking, String authorizationHeader){
         return bookingService.updateExistingBooking(booking);
     }
 

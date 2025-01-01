@@ -5,6 +5,7 @@ import com.Aggregator.BookingApp.Model.Offering;
 import com.Aggregator.BookingApp.Model.Slots;
 import com.Aggregator.BookingApp.service.OfferingService;
 import com.Aggregator.BookingApp.service.SlotService;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/api")
 public class OfferingsController {
 
     @Autowired

@@ -15,6 +15,7 @@ public class User {
     private String phoneNumber;
     private List<Address> listOfAddresses;
     private String role;
+    private String password;
 
     public String getRole() {
         return role;
@@ -72,4 +73,11 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

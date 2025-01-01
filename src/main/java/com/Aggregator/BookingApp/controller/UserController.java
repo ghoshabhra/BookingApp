@@ -2,11 +2,12 @@ package com.Aggregator.BookingApp.controller;
 
 import com.Aggregator.BookingApp.Model.User;
 import com.Aggregator.BookingApp.service.UserService;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController {
 
     @Autowired
