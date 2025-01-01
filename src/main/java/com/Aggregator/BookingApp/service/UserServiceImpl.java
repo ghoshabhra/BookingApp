@@ -3,7 +3,6 @@ package com.Aggregator.BookingApp.service;
 import com.Aggregator.BookingApp.Model.User;
 import com.Aggregator.BookingApp.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -58,7 +57,7 @@ public class UserServiceImpl implements UserService{
     public User findUserByEmail(String email) {
         List<User> userList = userRepository.findByEmail(email);
         if(userList.isEmpty()){
-            throw new UsernameNotFoundException("User not found");
+            System.out.println("User not found");
         }
         return userList.get(0);
     }
@@ -67,7 +66,7 @@ public class UserServiceImpl implements UserService{
     public User findUserByPhoneNo(String phoneNo) {
         List<User> userList = userRepository.findByEmail(phoneNo);
         if(userList.isEmpty()){
-            throw new UsernameNotFoundException("User not found");
+            System.out.println("User not found");
         }
         return userList.get(0);
     }
