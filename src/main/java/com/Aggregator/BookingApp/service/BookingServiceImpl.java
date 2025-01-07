@@ -121,7 +121,7 @@ public class BookingServiceImpl implements BookingService {
         booking.setOfferingId(offering.getId());
         booking.setOfferingName(offering.getName());
         booking.setOfferingDescription(offering.getDescription());
-        booking.setOfferingImageUrl(offering.getImageUrl());
+        booking.setOfferingImageUrl(offering.getImageUrls().get(0));
         booking.setActive(true);
         booking.setPaymentStatus(false);
         booking.setCreatedAt(LocalDateTime.now());

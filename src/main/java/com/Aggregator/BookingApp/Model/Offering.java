@@ -15,10 +15,8 @@ public class Offering {
     private String type;
     private String description;
     private Float cost;
-    private String imageUrl;
+    private List<String> imageUrls;
     private Boolean hourlyBookingAllowed;
-    private LocalDateTime serviceStart; // these 2 fields are for grooming, walking pet taxi etc which are not available for 24*7
-    private LocalDateTime serviceEnd;
     private List<String> features;
 
 
@@ -62,12 +60,12 @@ public class Offering {
         this.cost = cost;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public List<String> getImageUrls() {
+        return imageUrls;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImageUrls(List<String> imageUrls) {
+        this.imageUrls = imageUrls;
     }
 
     public Boolean getHourlyBookingAllowed() {
@@ -76,22 +74,6 @@ public class Offering {
 
     public void setHourlyBookingAllowed(Boolean hourlyBookingAllowed) {
         this.hourlyBookingAllowed = hourlyBookingAllowed;
-    }
-
-    public LocalDateTime getServiceStart() {
-        return serviceStart;
-    }
-
-    public void setServiceStart(LocalDateTime serviceStart) {
-        this.serviceStart = serviceStart;
-    }
-
-    public LocalDateTime getServiceEnd() {
-        return serviceEnd;
-    }
-
-    public void setServiceEnd(LocalDateTime serviceEnd) {
-        this.serviceEnd = serviceEnd;
     }
 
     public List<String> getFeatures() {
