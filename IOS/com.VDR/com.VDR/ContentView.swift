@@ -13,11 +13,9 @@ struct ContentView: View {
     var body: some View {
         Group {
             if sessionManager.currentUser != nil {
-                // Show main app content
                 MainView()
             } else {
-                // Show registration/login
-                RegistrationView()
+                WelcomeView()
             }
         }
     }
