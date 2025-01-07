@@ -5,64 +5,71 @@ struct OfferingCard: View {
     @State private var currentImageIndex = 0
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            // Image Carousel
-            TabView(selection: $currentImageIndex) {
-                ForEach(offering.imageUrls.indices, id: \.self) { index in
-                    AsyncImage(url: URL(string: offering.imageUrls[index])) { image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                    } placeholder: {
-                        Rectangle()
-                            .fill(Color.gray.opacity(0.3))
+        NavigationLink(destination: OfferingDetailView(offering: offering)) {
+            VStack(alignment: .leading, spacing: 12) {
+                // Image Carousel
+                TabView(selection: $currentImageIndex) {
+                    ForEach(offering.imageUrls.indices, id: \.self) { index in
+                        AsyncImage(url: URL(string: offering.imageUrls[index])) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                        } placeholder: {
+                            Rectangle()
+                                .fill(Color.gray.opacity(0.3))
+                        }
+                        .clipped()
                     }
-                    .clipped()
                 }
-            }
-            .frame(height: 200)
-            .tabViewStyle(PageTabViewStyle())
-            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-            
-            // Content
-            VStack(alignment: .leading, spacing: 8) {
-                Text(offering.name)
-                    .font(.title2)
-                    .fontWeight(.bold)
+                .frame(height: 200)
+                .tabViewStyle(PageTabViewStyle())
+                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
                 
-                Text(offering.type)
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                
-                Text(offering.description)
-                    .font(.body)
-                    .lineLimit(3)
-                
-                Text("₹\(String(format: "%.2f", offering.cost))")
-                    .font(.title3)
-                    .fontWeight(.semibold)
-                
-                // Features
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        ForEach(offering.features, id: \.self) { feature in
-                            Text(feature)
-                                .font(.caption)
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 4)
-                                .background(Color.blue.opacity(0.1))
-                                .cornerRadius(8)
+                // Content
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(offering.name)
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .foregroundColor(.primary)
+                    
+                    Text(offering.type)
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                    
+                    Text(offering.description)
+                        .font(.body)
+                        .lineLimit(3)
+                        .foregroundColor(.primary)
+                    
+                    Text("₹\(String(format: "%.2f", offering.cost))")
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.primary)
+                    
+                    // Features
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack {
+                            ForEach(offering.features, id: \.self) { feature in
+                                Text(feature)
+                                    .font(.caption)
+                                    .padding(.horizontal, 8)
+                                    .padding(.vertical, 4)
+                                    .background(Color.blue.opacity(0.1))
+                                    .cornerRadius(8)
+                                    .foregroundColor(.blue)
+                            }
                         }
                     }
                 }
+                .padding(.horizontal)
+                .padding(.bottom)
             }
-            .padding(.horizontal)
-            .padding(.bottom)
+            .frame(maxWidth: .infinity)
+            .background(Color.white)
+            .cornerRadius(12)
+            .shadow(radius: 5)
         }
-        .frame(maxWidth: .infinity)
-        .background(Color.white)
-        .cornerRadius(12)
-        .shadow(radius: 5)
+        .buttonStyle(PlainButtonStyle()) // This prevents the default button styling
     }
 }
 
