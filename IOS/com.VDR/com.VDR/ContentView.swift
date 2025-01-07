@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var sessionManager = SessionManager.shared
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        Group {
+            if sessionManager.currentUser != nil {
+                // Show main app content
+                MainView()
+            } else {
+                // Show registration/login
+                RegistrationView()
+            }
         }
-        .padding()
     }
 }
 
