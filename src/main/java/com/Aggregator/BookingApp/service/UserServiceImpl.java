@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public User AuthenticateUser(LoginDTO loginDTO) {
         User user = findUserByEmail(loginDTO.getEmail());
-        
+
         return user.getPassword().equals(loginDTO.getPassword()) ? user : null;
     }
 }
