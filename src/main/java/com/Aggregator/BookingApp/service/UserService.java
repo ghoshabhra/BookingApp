@@ -1,5 +1,6 @@
 package com.Aggregator.BookingApp.service;
 
+import com.Aggregator.BookingApp.DTO.LoginDTO;
 import com.Aggregator.BookingApp.Model.User;
 import org.springframework.stereotype.Service;
 
@@ -13,4 +14,5 @@ public interface UserService {
     public List<User> getaAllUsers();
     public User findUserByEmail(String email);
     public User findUserByPhoneNo(String phoneNo);
+    public User AuthenticateUser(LoginDTO loginDTO);
 }
