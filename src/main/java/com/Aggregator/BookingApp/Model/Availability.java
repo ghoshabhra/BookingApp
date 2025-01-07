@@ -1,14 +1,15 @@
 package com.Aggregator.BookingApp.Model;
 
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Availability {
-    private Date date;
+    private LocalDateTime date;
     private boolean isAvailable;
 
     // Constructor
-    public Availability(Date date, boolean isAvailable) {
+    public Availability(LocalDateTime date, boolean isAvailable) {
         this.date = date;
         this.isAvailable = isAvailable;
     }
@@ -17,11 +18,11 @@ public class Availability {
     public Availability() {}
 
     // Getters and Setters
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

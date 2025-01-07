@@ -17,9 +17,9 @@ public class BookingController {
     @Autowired
     public BookingService bookingService;
 
-    @GetMapping("/user/{id}")
-    public List<Booking> getBookingsById(@PathVariable("id") String id){
-        return bookingService.getAllBookingsByUserID(id);
+    @GetMapping("/user/{userId}")
+    public List<Booking> getBookingsById(@PathVariable("userId") String userId){
+        return bookingService.getAllBookingsByUserID(userId);
     }
 
     @PostMapping
@@ -28,7 +28,7 @@ public class BookingController {
     }
 
     @PutMapping
-    public Booking updateBooking(@RequestBody Booking booking, String authorizationHeader){
+    public Booking updateBooking(@RequestBody Booking booking){
         return bookingService.updateExistingBooking(booking);
     }
 

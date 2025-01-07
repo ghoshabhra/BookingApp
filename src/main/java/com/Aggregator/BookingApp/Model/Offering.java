@@ -4,8 +4,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.sql.Time;
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 @Document(collection = "offering")
@@ -17,7 +15,7 @@ public class Offering {
     private String description;
     private Float cost;
     private String imageUrl;
-    private Boolean slotBookingAllowed;
+    private Boolean hourlyBookingAllowed;
     private Time serviceStart; // these 2 fields are for grooming, walking pet taxi etc which are not available for 24*7
     private Time serviceEnd;
     private List<String> features;
@@ -71,12 +69,12 @@ public class Offering {
         this.imageUrl = imageUrl;
     }
 
-    public Boolean getSlotBookingAllowed() {
-        return slotBookingAllowed;
+    public Boolean getHourlyBookingAllowed() {
+        return hourlyBookingAllowed;
     }
 
-    public void setSlotBookingAllowed(Boolean slotBookingAllowed) {
-        this.slotBookingAllowed = slotBookingAllowed;
+    public void setHourlyBookingAllowed(Boolean hourlyBookingAllowed) {
+        this.hourlyBookingAllowed = hourlyBookingAllowed;
     }
 
     public Time getServiceStart() {

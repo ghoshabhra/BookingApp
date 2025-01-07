@@ -3,6 +3,7 @@ package com.Aggregator.BookingApp.Model;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.Duration;
 import java.util.List;
 
 @Document(collection = "slots")
@@ -15,18 +16,7 @@ public class Slots {
     private boolean hourlyBookingAllowed;
     private String uniqueId;
     private Availability availability;
-
-    // Constructor
-    public Slots(String id, String offeringId, String type, boolean hourlyBookingAllowed, Availability availability) {
-        this.id = id;
-        this.offeringId = offeringId;
-        this.type = type;
-        this.hourlyBookingAllowed = hourlyBookingAllowed;
-        this.availability = availability;
-    }
-
-    // Default constructor
-    public Slots() {}
+    private Duration slotDuration;
 
     // Getters and Setters
     public String getId() {
@@ -77,16 +67,12 @@ public class Slots {
         this.uniqueId = uniqueId;
     }
 
-    // toString method
-    @Override
-    public String toString() {
-        return "Room{" +
-                "id='" + id + '\'' +
-                ", hotelId='" + offeringId + '\'' +
-                ", roomType='" + type + '\'' +
-                ", hourlyBookingAllowed=" + hourlyBookingAllowed +
-                ", availability=" + availability +
-                '}';
+    public Duration getSlotDuration() {
+        return slotDuration;
+    }
+
+    public void setSlotDuration(Duration slotDuration) {
+        this.slotDuration = slotDuration;
     }
 
 }
