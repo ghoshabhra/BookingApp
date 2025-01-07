@@ -16,7 +16,7 @@ struct OfferingsView: View {
                         LazyVStack(spacing: 16) {
                             ForEach(offerings) { offering in
                                 OfferingCard(offering: offering)
-                                    .padding(.horizontal)
+                                    .padding(.horizontal, 16)
                             }
                         }
                         .padding(.vertical)
@@ -30,7 +30,6 @@ struct OfferingsView: View {
                 Text(errorMessage)
             }
             .task {
-                // Clear any stale state
                 isLoading = false
                 await loadOfferings()
             }

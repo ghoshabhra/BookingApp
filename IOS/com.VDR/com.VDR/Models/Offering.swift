@@ -11,9 +11,7 @@ struct Offering: Codable, Identifiable {
     let type: String
     let description: String
     let cost: Double
-    let imageUrl: String
+    let imageUrls: [String]
     let hourlyBookingAllowed: Bool
-//    let serviceStart: Date
-//    let serviceEnd: Date
     let features: [String]
 } 

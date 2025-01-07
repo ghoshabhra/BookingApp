@@ -2,20 +2,27 @@ import SwiftUI
 
 struct OfferingCard: View {
     let offering: Offering
+    @State private var currentImageIndex = 0
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            // Image
-            AsyncImage(url: URL(string: offering.imageUrl)) { image in
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-            } placeholder: {
-                Rectangle()
-                    .fill(Color.gray.opacity(0.3))
+            // Image Carousel
+            TabView(selection: $currentImageIndex) {
+                ForEach(offering.imageUrls.indices, id: \.self) { index in
+                    AsyncImage(url: URL(string: offering.imageUrls[index])) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    } placeholder: {
+                        Rectangle()
+                            .fill(Color.gray.opacity(0.3))
+                    }
+                    .clipped()
+                }
             }
             .frame(height: 200)
-            .clipped()
+            .tabViewStyle(PageTabViewStyle())
+            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
             
             // Content
             VStack(alignment: .leading, spacing: 8) {
@@ -52,8 +59,26 @@ struct OfferingCard: View {
             .padding(.horizontal)
             .padding(.bottom)
         }
+        .frame(maxWidth: .infinity)
         .background(Color.white)
         .cornerRadius(12)
         .shadow(radius: 5)
     }
+}
+
+#Preview {
+    OfferingCard(offering: Offering(
+        id: "1",
+        name: "Dog Boarding",
+        type: "Boarding",
+        description: "Comfortable stay for your furry friend",
+        cost: 1000.0,
+        imageUrls: [
+            "https://example.com/image1.jpg",
+            "https://example.com/image2.jpg",
+            "https://example.com/image3.jpg"
+        ],
+        hourlyBookingAllowed: true,
+        features: ["24/7 Care", "Spacious Kennels", "Daily Walks"]
+    ))
 } 
