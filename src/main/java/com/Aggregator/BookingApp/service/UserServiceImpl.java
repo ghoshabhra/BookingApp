@@ -1,6 +1,7 @@
 package com.Aggregator.BookingApp.service;
 
 import com.Aggregator.BookingApp.DTO.LoginDTO;
+import com.Aggregator.BookingApp.Model.Address;
 import com.Aggregator.BookingApp.Model.User;
 import com.Aggregator.BookingApp.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,9 +74,18 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User AuthenticateUser(LoginDTO loginDTO) {
+    public User authenticateUser(LoginDTO loginDTO) {
         User user = findUserByEmail(loginDTO.getEmail());
 
         return user.getPassword().equals(loginDTO.getPassword()) ? user : null;
+    }
+
+    @Override
+    public User addAddress(String id, Address address) {
+        User usr = findUser(id);
+        List<Address> listOfAddress = usr.getListOfAddresses();
+        listOfAddress.add(address);
+        usr.setListOfAddresses(listOfAddress);
+        return userRepository.save(usr);
     }
 }

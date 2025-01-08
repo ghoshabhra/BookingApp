@@ -1,6 +1,7 @@
 package com.Aggregator.BookingApp.controller;
 
 import com.Aggregator.BookingApp.DTO.LoginDTO;
+import com.Aggregator.BookingApp.Model.Address;
 import com.Aggregator.BookingApp.Model.User;
 import com.Aggregator.BookingApp.service.UserService;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -26,11 +27,16 @@ public class UserController {
 
     @PostMapping("/login")
     public User login(@RequestBody LoginDTO loginDTO){
-        return userService.AuthenticateUser(loginDTO);
+        return userService.authenticateUser(loginDTO);
     }
 
     @DeleteMapping
     public void deleteUser(String id){
         userService.deleteUser(id);
+    }
+
+    @PostMapping("/address")
+    public User addAddress(String id, @RequestBody Address address){
+        return userService.addAddress(id, address);
     }
 }
