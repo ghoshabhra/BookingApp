@@ -152,7 +152,6 @@ struct ProfileView: View {
             .alert("Delete Account", isPresented: $showingDeleteConfirmation) {
                 Button("Cancel", role: .cancel) { }
                 Button("Delete", role: .destructive) {
-                    // TODO: Implement account deletion
                     deleteAccount()
                 }
             } message: {
