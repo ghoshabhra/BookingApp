@@ -27,6 +27,7 @@ struct WelcomeView: View {
                             .background(Color.blue)
                             .cornerRadius(25)
                     }
+                    .buttonStyle(CustomButtonStyle())
                     
                     // Sign up link
                     HStack(spacing: 4) {
@@ -52,7 +53,3 @@ struct WelcomeView: View {
         .navigationViewStyle(.stack)
     }
 }
-
-#Preview {
-    WelcomeView()
-} 

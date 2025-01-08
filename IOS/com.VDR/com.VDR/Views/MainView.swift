@@ -33,9 +33,12 @@ struct ProfileView: View {
                     HStack {
                         Spacer()
                         
-                        Button("Edit profile") {
+                        Button(action: {
                             // Edit profile action
+                        }) {
+                            Text("Edit profile")
                         }
+                        .buttonStyle(.plain)
                         .foregroundColor(.green)
                     }
                     .padding(.horizontal)
@@ -71,71 +74,78 @@ struct ProfileView: View {
                             .fontWeight(.bold)
                             .padding(.horizontal)
                         
-                        Button(action: {
-                            showingAddressForm = true
-                        }) {
-                            HStack {
-                                Image(systemName: "house")
-                                    .frame(width: 24)
-                                Text("Add home address")
-                                Spacer()
-                                Image(systemName: "chevron.right")
+                        VStack(spacing: 16) {
+                            Button(action: {
+                                showingAddressForm = true
+                            }) {
+                                HStack {
+                                    Image(systemName: "house")
+                                        .frame(width: 24)
+                                    Text("Add home address")
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                }
+                                .padding()
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .stroke(Color.clear, lineWidth: 0)
+                                )
+                                .background(Color.white)
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
                             }
-                            .padding()
-                            .background(Color.white)
+                            .buttonStyle(PlainButtonStyle())
+                            .foregroundColor(.primary)
+                            
+                            Button(action: {
+                                showingAddressList = true
+                            }) {
+                                HStack {
+                                    Image(systemName: "list.bullet")
+                                        .frame(width: 24)
+                                    Text("View saved addresses")
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                }
+                                .padding()
+                            }
+                            .buttonStyle(CustomButtonStyle())
+                            .foregroundColor(.primary)
                         }
-                        .foregroundColor(.primary)
                         
-                        Button(action: {
-                            showingAddressList = true
-                        }) {
-                            HStack {
-                                Image(systemName: "list.bullet")
-                                    .frame(width: 24)
-                                Text("View saved addresses")
-                                Spacer()
-                                Image(systemName: "chevron.right")
+                        // Account Actions
+                        VStack(spacing: 16) {
+                            Button(action: {
+                                SessionManager.shared.clearSession()
+                            }) {
+                                HStack {
+                                    Image(systemName: "rectangle.portrait.and.arrow.right")
+                                        .frame(width: 24)
+                                    Text("Log out")
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                }
+                                .padding()
                             }
-                            .padding()
-                            .background(Color.white)
+                            .buttonStyle(CustomButtonStyle())
+                            .foregroundColor(.primary)
+                            
+                            Button(action: {
+                                showingDeleteConfirmation = true
+                            }) {
+                                HStack {
+                                    Image(systemName: "trash")
+                                        .frame(width: 24)
+                                    Text("Delete account")
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                }
+                                .padding()
+                            }
+                            .buttonStyle(CustomButtonStyle())
+                            .foregroundColor(.primary)
                         }
-                        .foregroundColor(.primary)
                     }
-                    
-                    // Account Actions
-                    VStack(spacing: 16) {
-                        Button(action: {
-                            SessionManager.shared.clearSession()
-                        }) {
-                            HStack {
-                                Image(systemName: "rectangle.portrait.and.arrow.right")
-                                    .frame(width: 24)
-                                Text("Log out")
-                                Spacer()
-                                Image(systemName: "chevron.right")
-                            }
-                            .padding()
-                            .background(Color.white)
-                        }
-                        .foregroundColor(.primary)
-                        
-                        Divider()
-                        
-                        Button(action: {
-                            showingDeleteConfirmation = true
-                        }) {
-                            HStack {
-                                Image(systemName: "trash")
-                                    .frame(width: 24)
-                                Text("Delete account")
-                                Spacer()
-                                Image(systemName: "chevron.right")
-                            }
-                            .padding()
-                            .background(Color.white)
-                        }
-                        .foregroundColor(.primary)
-                    }
+                    .padding(.horizontal)
                 }
                 .padding(.vertical)
             }
@@ -177,6 +187,15 @@ struct ProfileView: View {
                 // You might want to show an error alert here
             }
         }
+    }
+}
+
+struct CustomButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .background(Color.white)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .contentShape(RoundedRectangle(cornerRadius: 12))
     }
 }
 

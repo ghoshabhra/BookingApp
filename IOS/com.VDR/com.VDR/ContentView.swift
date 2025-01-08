@@ -18,6 +18,7 @@ struct ContentView: View {
                 WelcomeView()
             }
         }
+        .background(Color.appBackground)
     }
 }
 

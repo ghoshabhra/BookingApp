@@ -79,6 +79,8 @@ struct AddressListView: View {
                     }
                 }
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.appBackground)
             .navigationTitle("Saved Addresses")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
