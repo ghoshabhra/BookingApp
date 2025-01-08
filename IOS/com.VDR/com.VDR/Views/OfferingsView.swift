@@ -21,8 +21,11 @@ struct OfferingsView: View {
                         }
                         .padding(.vertical)
                     }
+                    .background(Color.appBackground)
                 }
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.appBackground)
             .navigationTitle("Services")
             .alert("Error", isPresented: $showingError) {
                 Button("OK", role: .cancel) { }

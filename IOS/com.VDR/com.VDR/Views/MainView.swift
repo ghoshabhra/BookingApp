@@ -15,6 +15,7 @@ struct MainView: View {
                     Label("Profile", systemImage: "person.circle")
                 }
         }
+        .background(Color.appBackground)
     }
 }
 
@@ -144,7 +145,8 @@ struct ProfileView: View {
                 }
                 .padding(.vertical)
             }
-            .background(Color.gray.opacity(0.1))
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.appBackground)
             .navigationBarHidden(true)
         }
     }

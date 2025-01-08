@@ -9,37 +9,42 @@ struct LoginView: View {
     @State private var isLoading = false
     
     var body: some View {
-        NavigationView {
-            Form {
-                Section(header: Text("Login Details")) {
-                    TextField("Email", text: $email)
-                        .textContentType(.emailAddress)
-                        .keyboardType(.emailAddress)
-                        .autocapitalization(.none)
-                    
-                    SecureField("Password", text: $password)
-                        .textContentType(.password)
-                }
-                
-                Section {
-                    Button(action: login) {
-                        if isLoading {
-                            ProgressView()
-                                .progressViewStyle(CircularProgressViewStyle())
-                        } else {
-                            Text("Login")
-                                .frame(maxWidth: .infinity)
-                        }
+        ScrollView {
+            VStack {
+                Form {
+                    Section(header: Text("Login Details")) {
+                        TextField("Email", text: $email)
+                            .textContentType(.emailAddress)
+                            .keyboardType(.emailAddress)
+                            .autocapitalization(.none)
+                        
+                        SecureField("Password", text: $password)
+                            .textContentType(.password)
                     }
-                    .disabled(isLoading || !isFormValid)
+                    
+                    Section {
+                        Button(action: login) {
+                            if isLoading {
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle())
+                            } else {
+                                Text("Login")
+                                    .frame(maxWidth: .infinity)
+                            }
+                        }
+                        .disabled(isLoading || !isFormValid)
+                    }
                 }
             }
-            .navigationTitle("Login")
-            .alert("Login", isPresented: $showingAlert) {
-                Button("OK", role: .cancel) { }
-            } message: {
-                Text(alertMessage)
-            }
+            .padding()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.appBackground)
+        .navigationBarTitleDisplayMode(.inline)
+        .alert("Login", isPresented: $showingAlert) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text(alertMessage)
         }
     }
     

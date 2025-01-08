@@ -45,6 +45,8 @@ struct WelcomeView: View {
                 .padding(.horizontal, 20)
                 .padding(.bottom, 50)
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.appBackground)
             .navigationBarHidden(true)
         }
         .navigationViewStyle(.stack)
