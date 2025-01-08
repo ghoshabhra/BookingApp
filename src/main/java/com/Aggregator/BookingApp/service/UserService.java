@@ -18,4 +18,5 @@ public interface UserService {
     public User findUserByPhoneNo(String phoneNo);
     public User authenticateUser(LoginDTO loginDTO);
     public User addAddress(String id, Address address);
+    public List<Address> getAllAddresses(String id);
 }

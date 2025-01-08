@@ -88,4 +88,9 @@ public class UserServiceImpl implements UserService{
         usr.setListOfAddresses(listOfAddress);
         return userRepository.save(usr);
     }
+
+    @Override
+    public List<Address> getAllAddresses(String id) {
+        return findUser(id).getListOfAddresses();
+    }
 }
