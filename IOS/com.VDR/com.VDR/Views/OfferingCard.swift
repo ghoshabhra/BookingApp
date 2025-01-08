@@ -34,6 +34,9 @@ struct OfferingCard: View {
                         .font(.title3)
                         .fontWeight(.semibold)
                         .foregroundColor(.primary)
+                    + Text(offering.hourlyBookingAllowed ? "per hour" : "per day")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
                     
                     // Features
                     ScrollView(.horizontal, showsIndicators: false) {

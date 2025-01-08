@@ -24,9 +24,14 @@ struct OfferingDetailView: View {
                         .fontWeight(.bold)
                     
                     // Price
-                    Text("₹\(String(format: "%.2f", offering.cost))")
-                        .font(.title2)
-                        .fontWeight(.semibold)
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("₹\(String(format: "%.2f", offering.cost))")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                        Text(offering.hourlyBookingAllowed ? "per hour" : "per day")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    }
                     
                     // Description
                     Text("About")
