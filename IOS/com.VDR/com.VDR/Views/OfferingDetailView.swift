@@ -10,15 +10,8 @@ struct OfferingDetailView: View {
                 // Image Carousel
                 TabView {
                     ForEach(offering.imageUrls.indices, id: \.self) { index in
-                        AsyncImage(url: URL(string: offering.imageUrls[index])) { image in
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                        } placeholder: {
-                            Rectangle()
-                                .fill(Color.gray.opacity(0.3))
-                        }
-                        .clipped()
+                        CachedAsyncImage(url: URL(string: offering.imageUrls[index]))
+                            .clipped()
                     }
                 }
                 .frame(height: 300)
