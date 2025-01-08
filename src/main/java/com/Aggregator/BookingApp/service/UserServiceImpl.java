@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +23,9 @@ public class UserServiceImpl implements UserService{
     public User createUser(User user) {
         if(StringUtils.isEmpty(user.getRole())){
             user.setRole("USER");
+        }
+        if(user.getListOfAddresses() == null ){
+            user.setListOfAddresses(new ArrayList<Address>());
         }
         return userRepository.save(user);
     }
