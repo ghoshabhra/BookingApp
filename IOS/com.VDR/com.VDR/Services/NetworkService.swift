@@ -109,4 +109,38 @@ class NetworkService {
             throw error
         }
     }
+    
+    func deleteUser(id: String) async throws {
+        Logger.log("Initiating user deletion request for id: \(id)")
+        
+        guard let url = URL(string: "\(baseURL)/user?id=\(id)") else {
+            Logger.log("Invalid URL for user deletion", level: .error)
+            throw NetworkError.invalidURL
+        }
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "DELETE"
+        urlRequest.setValue("*/*", forHTTPHeaderField: "accept")
+        
+        do {
+            let (_, response) = try await URLSession.shared.data(for: urlRequest)
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                Logger.log("Invalid response type", level: .error)
+                throw NetworkError.invalidResponse
+            }
+            
+            Logger.log("Received response with status code: \(httpResponse.statusCode)")
+            
+            guard (200...299).contains(httpResponse.statusCode) else {
+                Logger.log("HTTP Error: Status code \(httpResponse.statusCode)", level: .error)
+                throw NetworkError.invalidResponse
+            }
+            
+            Logger.log("Successfully deleted user")
+        } catch {
+            Logger.log("Failed to delete user: \(error.localizedDescription)", level: .error)
+            throw error
+        }
+    }
 } 

@@ -161,9 +161,23 @@ struct ProfileView: View {
     }
     
     private func deleteAccount() {
-        // Implement account deletion logic here
-        // After successful deletion, log out the user
-        SessionManager.shared.clearSession()
+        guard let userId = sessionManager.currentUser?.id else {
+            return
+        }
+        
+        Task {
+            do {
+                try await NetworkService.shared.deleteUser(id: userId)
+                await MainActor.run {
+                    // After successful deletion, log out the user
+                    SessionManager.shared.clearSession()
+                }
+            } catch {
+                // Handle error if needed
+                Logger.log("Failed to delete account: \(error)", level: .error)
+                // You might want to show an error alert here
+            }
+        }
     }
 }
 
