@@ -31,13 +31,6 @@ struct ProfileView: View {
                 VStack(spacing: 24) {
                     // Profile Header
                     HStack {
-                        Button(action: {
-                            // Back action
-                        }) {
-                            Image(systemName: "arrow.left")
-                                .foregroundColor(.primary)
-                        }
-                        
                         Spacer()
                         
                         Button("Edit profile") {
