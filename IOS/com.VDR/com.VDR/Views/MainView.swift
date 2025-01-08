@@ -21,6 +21,7 @@ struct MainView: View {
 
 struct ProfileView: View {
     @StateObject private var sessionManager = SessionManager.shared
+    @State private var showingDeleteConfirmation = false
     
     var body: some View {
         NavigationView {
@@ -128,7 +129,7 @@ struct ProfileView: View {
                         Divider()
                         
                         Button(action: {
-                            // Delete account action
+                            showingDeleteConfirmation = true
                         }) {
                             HStack {
                                 Image(systemName: "trash")
@@ -148,7 +149,22 @@ struct ProfileView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.appBackground)
             .navigationBarHidden(true)
+            .alert("Delete Account", isPresented: $showingDeleteConfirmation) {
+                Button("Cancel", role: .cancel) { }
+                Button("Delete", role: .destructive) {
+                    // TODO: Implement account deletion
+                    deleteAccount()
+                }
+            } message: {
+                Text("Are you sure you want to delete your account? This action cannot be reversed and all your data will be permanently deleted.")
+            }
         }
+    }
+    
+    private func deleteAccount() {
+        // Implement account deletion logic here
+        // After successful deletion, log out the user
+        SessionManager.shared.clearSession()
     }
 }
 

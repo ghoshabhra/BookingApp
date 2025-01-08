@@ -9,38 +9,33 @@ struct LoginView: View {
     @State private var isLoading = false
     
     var body: some View {
-        ScrollView {
-            VStack {
-                Form {
-                    Section(header: Text("Login Details")) {
-                        TextField("Email", text: $email)
-                            .textContentType(.emailAddress)
-                            .keyboardType(.emailAddress)
-                            .autocapitalization(.none)
-                        
-                        SecureField("Password", text: $password)
-                            .textContentType(.password)
-                    }
-                    
-                    Section {
-                        Button(action: login) {
-                            if isLoading {
-                                ProgressView()
-                                    .progressViewStyle(CircularProgressViewStyle())
-                            } else {
-                                Text("Login")
-                                    .frame(maxWidth: .infinity)
-                            }
-                        }
-                        .disabled(isLoading || !isFormValid)
+        Form {
+            Section(header: Text("Login Details")) {
+                TextField("Email", text: $email)
+                    .textContentType(.emailAddress)
+                    .keyboardType(.emailAddress)
+                    .autocapitalization(.none)
+                
+                SecureField("Password", text: $password)
+                    .textContentType(.password)
+            }
+            
+            Section {
+                Button(action: login) {
+                    if isLoading {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle())
+                    } else {
+                        Text("Login")
+                            .frame(maxWidth: .infinity)
                     }
                 }
+                .disabled(isLoading || !isFormValid)
             }
-            .padding()
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .scrollContentBackground(.hidden)
         .background(Color.appBackground)
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("Login")
         .alert("Login", isPresented: $showingAlert) {
             Button("OK", role: .cancel) { }
         } message: {
@@ -87,5 +82,7 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView()
+    NavigationView {
+        LoginView()
+    }
 } 
