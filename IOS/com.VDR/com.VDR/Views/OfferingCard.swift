@@ -32,10 +32,6 @@ struct OfferingCard: View {
                         .fontWeight(.bold)
                         .foregroundColor(.primary)
                     
-                    Text(offering.type)
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                    
                     Text(offering.description)
                         .font(.body)
                         .lineLimit(3)
@@ -69,7 +65,7 @@ struct OfferingCard: View {
             .cornerRadius(12)
             .shadow(radius: 5)
         }
-        .buttonStyle(PlainButtonStyle()) // This prevents the default button styling
+        .buttonStyle(PlainButtonStyle())
     }
 }
 

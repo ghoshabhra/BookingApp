@@ -26,16 +26,9 @@ struct OfferingDetailView: View {
                 .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
                 
                 VStack(alignment: .leading, spacing: 16) {
-                    // Title and Type
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text(offering.name)
-                            .font(.title)
-                            .fontWeight(.bold)
-                        
-                        Text(offering.type)
-                            .font(.title3)
-                            .foregroundColor(.secondary)
-                    }
+                    Text(offering.name)
+                        .font(.title)
+                        .fontWeight(.bold)
                     
                     // Price
                     Text("₹\(String(format: "%.2f", offering.cost))")
@@ -48,10 +41,6 @@ struct OfferingDetailView: View {
                     Text(offering.description)
                         .font(.body)
                     
-                    // Features
-                    Text("Features")
-                        .font(.headline)
-                        .padding(.top)
                     
                     LazyVGrid(columns: [
                         GridItem(.flexible()),
