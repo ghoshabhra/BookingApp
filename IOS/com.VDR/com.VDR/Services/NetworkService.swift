@@ -179,4 +179,38 @@ class NetworkService {
             throw error
         }
     }
+    
+    func fetchUserAddresses(userId: String) async throws -> [Address] {
+        Logger.log("Fetching addresses for user: \(userId)")
+        
+        guard let url = URL(string: "\(baseURL)/user/address?id=\(userId)") else {
+            Logger.log("Invalid URL for fetching addresses", level: .error)
+            throw NetworkError.invalidURL
+        }
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue("*/*", forHTTPHeaderField: "accept")
+        
+        do {
+            let (data, response) = try await URLSession.shared.data(for: urlRequest)
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                Logger.log("Invalid response type", level: .error)
+                throw NetworkError.invalidResponse
+            }
+            
+            guard (200...299).contains(httpResponse.statusCode) else {
+                Logger.log("HTTP Error: Status code \(httpResponse.statusCode)", level: .error)
+                throw NetworkError.invalidResponse
+            }
+            
+            let addresses = try JSONDecoder().decode([Address].self, from: data)
+            Logger.log("Successfully fetched \(addresses.count) addresses")
+            return addresses
+        } catch {
+            Logger.log("Failed to fetch addresses: \(error.localizedDescription)", level: .error)
+            throw error
+        }
+    }
 } 

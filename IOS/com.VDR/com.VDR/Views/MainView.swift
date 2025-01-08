@@ -23,6 +23,7 @@ struct ProfileView: View {
     @StateObject private var sessionManager = SessionManager.shared
     @State private var showingDeleteConfirmation = false
     @State private var showingAddressForm = false
+    @State private var showingAddressList = false
     
     var body: some View {
         NavigationView {
@@ -91,6 +92,21 @@ struct ProfileView: View {
                             .background(Color.white)
                         }
                         .foregroundColor(.primary)
+                        
+                        Button(action: {
+                            showingAddressList = true
+                        }) {
+                            HStack {
+                                Image(systemName: "list.bullet")
+                                    .frame(width: 24)
+                                Text("View saved addresses")
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                            }
+                            .padding()
+                            .background(Color.white)
+                        }
+                        .foregroundColor(.primary)
                     }
                     
                     // Account Actions
@@ -143,6 +159,9 @@ struct ProfileView: View {
             }
             .sheet(isPresented: $showingAddressForm) {
                 AddAddressView()
+            }
+            .sheet(isPresented: $showingAddressList) {
+                AddressListView()
             }
         }
     }
