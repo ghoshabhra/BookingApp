@@ -34,12 +34,12 @@ struct OfferingsView: View {
                 await loadOfferings()
             }
             .refreshable {
-                await loadOfferings()
+                await loadOfferings(showErrorAlert: false)
             }
         }
     }
     
-    private func loadOfferings() async {
+    private func loadOfferings(showErrorAlert: Bool = false) async {
         if isLoading {
             Logger.log("Loading already in progress, skipping", level: .warning)
             return
@@ -58,11 +58,12 @@ struct OfferingsView: View {
             }
         } catch {
             await MainActor.run {
-                errorMessage = error.localizedDescription
-                showingError = true
+                if showErrorAlert {
+                    errorMessage = error.localizedDescription
+                    showingError = true
+                }
                 Logger.log("Failed to load offerings: \(error)", level: .error)
                 isLoading = false
-                offerings = [] // Reset offerings on error
             }
         }
     }
