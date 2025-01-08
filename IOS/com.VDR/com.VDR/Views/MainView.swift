@@ -22,6 +22,7 @@ struct MainView: View {
 struct ProfileView: View {
     @StateObject private var sessionManager = SessionManager.shared
     @State private var showingDeleteConfirmation = false
+    @State private var showingAddressForm = false
     
     var body: some View {
         NavigationView {
@@ -77,29 +78,12 @@ struct ProfileView: View {
                             .padding(.horizontal)
                         
                         Button(action: {
-                            // Add home address action
+                            showingAddressForm = true
                         }) {
                             HStack {
                                 Image(systemName: "house")
                                     .frame(width: 24)
                                 Text("Add home address")
-                                Spacer()
-                                Image(systemName: "chevron.right")
-                            }
-                            .padding()
-                            .background(Color.white)
-                        }
-                        .foregroundColor(.primary)
-                        
-                        Divider()
-                        
-                        Button(action: {
-                            // Add work address action
-                        }) {
-                            HStack {
-                                Image(systemName: "briefcase")
-                                    .frame(width: 24)
-                                Text("Add work address")
                                 Spacer()
                                 Image(systemName: "chevron.right")
                             }
@@ -156,6 +140,9 @@ struct ProfileView: View {
                 }
             } message: {
                 Text("Are you sure you want to delete your account? This action cannot be reversed and all your data will be permanently deleted.")
+            }
+            .sheet(isPresented: $showingAddressForm) {
+                AddAddressView()
             }
         }
     }

@@ -143,4 +143,40 @@ class NetworkService {
             throw error
         }
     }
+    
+    func addUserAddress(userId: String, address: AddressRequest) async throws {
+        Logger.log("Adding address for user: \(userId)")
+        
+        guard let url = URL(string: "\(baseURL)/user/address?id=\(userId)") else {
+            Logger.log("Invalid URL for adding address", level: .error)
+            throw NetworkError.invalidURL
+        }
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "POST"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue("*/*", forHTTPHeaderField: "accept")
+        
+        let jsonData = try JSONEncoder().encode(address)
+        urlRequest.httpBody = jsonData
+        
+        do {
+            let (_, response) = try await URLSession.shared.data(for: urlRequest)
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                Logger.log("Invalid response type", level: .error)
+                throw NetworkError.invalidResponse
+            }
+            
+            guard (200...299).contains(httpResponse.statusCode) else {
+                Logger.log("HTTP Error: Status code \(httpResponse.statusCode)", level: .error)
+                throw NetworkError.invalidResponse
+            }
+            
+            Logger.log("Successfully added address")
+        } catch {
+            Logger.log("Failed to add address: \(error.localizedDescription)", level: .error)
+            throw error
+        }
+    }
 } 
