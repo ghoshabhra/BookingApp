@@ -4,36 +4,50 @@ struct WelcomeView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
+                Spacer()
+                
+                // Logo/Title
                 Text("Welcome to VDR")
-                    .font(.largeTitle)
-                    .padding(.top, 50)
+                    .font(.system(size: 48, weight: .bold))
+                    .foregroundColor(.primary)
+                    .multilineTextAlignment(.center)
                 
                 Spacer()
                 
-                NavigationLink(destination: LoginView()) {
-                    Text("Login")
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+                // Sign in options
+                VStack(spacing: 16) {
+                    NavigationLink {
+                        LoginView()
+                    } label: {
+                        Text("Sign in with email")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 50)
+                            .background(Color.blue)
+                            .cornerRadius(25)
+                    }
+                    
+                    // Sign up link
+                    HStack(spacing: 4) {
+                        Text("New here?")
+                            .foregroundColor(.secondary)
+                        
+                        NavigationLink {
+                            RegistrationView()
+                        } label: {
+                            Text("Sign up")
+                                .fontWeight(.bold)
+                                .foregroundColor(.blue)
+                        }
+                    }
                 }
-                .padding(.horizontal)
-                
-                NavigationLink(destination: RegistrationView()) {
-                    Text("Register")
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.green)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                }
-                .padding(.horizontal)
-                
-                Spacer()
+                .padding(.horizontal, 20)
+                .padding(.bottom, 50)
             }
             .navigationBarHidden(true)
         }
+        .navigationViewStyle(.stack)
     }
 }
 
