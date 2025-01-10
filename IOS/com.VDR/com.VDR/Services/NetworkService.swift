@@ -213,4 +213,45 @@ class NetworkService {
             throw error
         }
     }
+    
+    func createBooking(_ request: BookingRequest) async throws {
+        Logger.log("Creating booking for offering: \(request.offeringId)")
+        
+        guard let url = URL(string: "\(baseURL)/booking") else {
+            Logger.log("Invalid URL for creating booking", level: .error)
+            throw NetworkError.invalidURL
+        }
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "POST"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue("*/*", forHTTPHeaderField: "accept")
+        
+        let jsonData = try JSONEncoder().encode(request)
+        
+        if let jsonString = String(data: jsonData, encoding: .utf8) {
+            Logger.log("Booking request payload: \(jsonString)")
+        }
+        
+        urlRequest.httpBody = jsonData
+        
+        do {
+            let (_, response) = try await URLSession.shared.data(for: urlRequest)
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                Logger.log("Invalid response type", level: .error)
+                throw NetworkError.invalidResponse
+            }
+            
+            guard (200...299).contains(httpResponse.statusCode) else {
+                Logger.log("HTTP Error: Status code \(httpResponse.statusCode)", level: .error)
+                throw NetworkError.invalidResponse
+            }
+            
+            Logger.log("Successfully created booking")
+        } catch {
+            Logger.log("Failed to create booking: \(error.localizedDescription)", level: .error)
+            throw error
+        }
+    }
 } 

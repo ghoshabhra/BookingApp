@@ -3,6 +3,7 @@ import SwiftUI
 struct OfferingDetailView: View {
     let offering: Offering
     @Environment(\.dismiss) private var dismiss
+    @State private var showingBookingView = false
     
     var body: some View {
         ScrollView {
@@ -65,10 +66,13 @@ struct OfferingDetailView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("Book Now") {
-                    // TODO: Implement booking functionality
+                    showingBookingView = true
                 }
                 .fontWeight(.semibold)
             }
+        }
+        .sheet(isPresented: $showingBookingView) {
+            BookingView(offering: offering)
         }
     }
 } 
