@@ -16,7 +16,7 @@ public class Slots {
     private boolean hourlyBookingAllowed;
     private String uniqueId;
     private Availability availability;
-    private Duration slotDuration;
+    private Long slotDurationInHour;
 
     // Getters and Setters
     public String getId() {
@@ -67,13 +67,12 @@ public class Slots {
         this.uniqueId = uniqueId;
     }
 
-    public Duration getSlotDuration() {
-        return slotDuration;
+    public Long getSlotDurationInHour() {
+        return slotDurationInHour;
     }
 
-    public void setSlotDuration(Duration slotDuration) {
-        this.slotDuration = slotDuration;
+    public void setSlotDurationInHour(Long slotDurationInHour) {
+        this.slotDurationInHour = slotDurationInHour;
     }
-
 }
 

@@ -34,13 +34,20 @@ public class ReservationRepositoryImpl implements ReservationRepository{
         // Match Stage 2: Match availability filters
         AggregationOperation matchAvailability = Aggregation.match(
                 Criteria.where("availability.isAvailable").is(true)
-                        .and("availability.date").lt(startTime)
-                        .and("availability.date").gt(endTime)
+        );
+
+        AggregationOperation matchStartTime = Aggregation.match(
+                Criteria.where("availability.date").gte(startTime)
+        );
+        AggregationOperation matchEndTime = Aggregation.match(
+                Criteria.where("availability.date").lte(endTime)
         );
 
         Aggregation aggregation = Aggregation.newAggregation(
                 matchOfferingId,
-                matchAvailability
+                matchAvailability,
+                matchStartTime,
+                matchEndTime
         );
 
         AggregationResults<Slots> results = mongoTemplate.aggregate(

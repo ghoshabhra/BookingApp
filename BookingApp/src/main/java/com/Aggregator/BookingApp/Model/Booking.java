@@ -10,7 +10,7 @@ import java.util.List;
 @Document(collection = "booking")
 public class Booking {
     @Id
-    private String Id;
+    private String id;
     private String userId;
     private String userEmail;
     private String userFirstName;
@@ -28,11 +28,11 @@ public class Booking {
     private List<Slots> listOfBookedSlots;
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        id = id;
     }
 
     public Boolean getActive() {
@@ -155,4 +155,17 @@ public class Booking {
         this.listOfBookedSlots = listOfBookedSlots;
     }
 
+    public void setUserDetails(User usr){
+        this.setUserId(usr.getId());
+        this.setUserEmail(usr.getEmail());
+        this.setUserFirstName(usr.getFirstName());
+        this.setUserLastName(usr.getLastName());
+    }
+
+    public void setOfferingDetail(Offering offering){
+        this.setOfferingId(offering.getId());
+        this.setOfferingName(offering.getName());
+        this.setOfferingDescription(offering.getDescription());
+        this.setOfferingImageUrl(offering.getImageUrls().get(0));
+    }
 }
