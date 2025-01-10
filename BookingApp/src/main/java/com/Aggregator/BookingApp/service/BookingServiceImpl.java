@@ -43,7 +43,7 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public void deleteBooking(String id) {
         Booking booking = bookingRepository.findById(id).orElse(null);
-        booking.getListOfBookedSlots().forEach(e->{
+        Objects.requireNonNull(booking).getListOfBookedSlots().forEach(e->{
             e.getAvailability().setAvailable(true);
             slotService.addSlots(e);
         });

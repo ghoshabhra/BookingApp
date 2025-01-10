@@ -17,9 +17,9 @@ public class BookingController {
     @Autowired
     public BookingService bookingService;
 
-    @GetMapping("/user/{userId}")
-    public List<Booking> getBookingsById(@PathVariable("userId") String userId){
-        return bookingService.getAllBookingsByUserID(userId);
+    @GetMapping("/user")
+    public List<Booking> getBookingsById(String id){
+        return bookingService.getAllBookingsByUserID(id);
     }
 
     @PostMapping
